@@ -35,10 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 //append the new data to current data.
                 getTabs(function (resultData) {
                     value = JSON.parse(result[currentDate])
-
+                    
                     // resultData = JSON.stringify(resultData)
-
-                    value.push(resultData)
+                    console.log(value)
+                    value = value.concat(resultData)
+                    console.log(value)
                     const setData = {
                         [currentDate]: JSON.stringify(value)
                     }
@@ -70,24 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-        chrome.tabs.query({ currentWindow: true }, function (tabs) {
-            var tab = tabs.map(tab => {
-                return ({
-                    title: tab.title,
-                    url: tab.url
-                })
-            })
+        // chrome.tabs.query({ currentWindow: true }, function (tabs) {
+        //     var tab = tabs.map(tab => {
+        //         return ({
+        //             title: tab.title,
+        //             url: tab.url
+        //         })
+        //     })
 
-            tabs.forEach(element => {
-                const lielement = document.createElement('li')
-                lielement.textContent = `url: ${JSON.stringify(tabs)}`
-                tabList.appendChild(lielement)
-            });
-            const lenElement = document.createElement('p')
-            lenElement.textContent = tabs.length
-            document.body.appendChild(lenElement)
 
-        })
+        // })
     })
 
     storageBtn.addEventListener('click', function () {
